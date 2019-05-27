@@ -35,8 +35,12 @@ function draw(e) {
   [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
-// Will only draw when the mose is being clicked by the user (mousedown)
+// Will only draw when the mouse is being clicked by the user (mousedown)
+// Will start path from where the user clicksthe mouse
+canvas.addEventListener('mousedown', (e) => {
+  isDrawing = true;
+  [lastX, lastY] = [e.offsetX, e.offsetY];
+});
 canvas.addEventListener('mousemove', draw);
-canvas.addEventListener('mousedown', () => (isDrawing = true));
 canvas.addEventListener('mouseup', () => (isDrawing = false));
 canvas.addEventListener('mouseout', () => (isDrawing = false));
