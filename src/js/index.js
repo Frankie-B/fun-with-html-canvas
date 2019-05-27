@@ -23,6 +23,16 @@ let lastY = 0;
 function draw(e) {
   if (!isDrawing) return; // will stop logging mouse movement if they are not drawing
   console.log(e);
+  // Will create the lines the user draws
+  ctx.beginPath();
+  // Start from
+  ctx.moveTo(lastX, lastY);
+  // Go to
+  ctx.lineTo(e.offsetX, e.offsetY); // These values are gotten from the mouse event
+  ctx.stroke();
+
+  // Destructuring an array ES 6  method
+  [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
 // Will only draw when the mose is being clicked by the user (mousedown)
