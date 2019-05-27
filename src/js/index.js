@@ -39,6 +39,10 @@ function draw(e) {
   // Destructuring an array ES 6  method
   [lastX, lastY] = [e.offsetX, e.offsetY];
   hue++;
+    // Reset HSL colour
+  if(hue > 360) {
+      hue = 0;
+  }
 }
 
 // Will only draw when the mouse is being clicked by the user (mousedown)
