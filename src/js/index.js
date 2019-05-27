@@ -15,13 +15,13 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = '#BADA55';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
-ctx.lineWidth = 5; // Line width
+ctx.lineWidth = 3; // Line width
 
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 let hue = 0;
-
+let direction = true;
 
 function draw(e) {
   if (!isDrawing) return; // will stop logging mouse movement if they are not drawing
@@ -38,10 +38,19 @@ function draw(e) {
 
   // Destructuring an array ES 6  method
   [lastX, lastY] = [e.offsetX, e.offsetY];
+
   hue++;
-    // Reset HSL colour
-  if(hue > 360) {
-      hue = 0;
+  if (hue >= 360) {
+    hue = 0;
+  }
+  if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+    direction = !direction;
+  }
+
+  if (direction) {
+    ctx.lineWidth++;
+  } else {
+    ctx.lineWidth--;
   }
 }
 
