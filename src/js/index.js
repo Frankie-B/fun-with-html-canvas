@@ -15,14 +15,19 @@ canvas.height = window.innerHeight;
 ctx.strokeStyle = '#BADA55';
 ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
+ctx.lineWidth = 5; // Line width
 
 let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
+let hue = 0;
+
 
 function draw(e) {
   if (!isDrawing) return; // will stop logging mouse movement if they are not drawing
   console.log(e);
+  // Adding HSL colour to the cursor
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   // Will create the lines the user draws
   ctx.beginPath();
   // Start from
@@ -33,11 +38,12 @@ function draw(e) {
 
   // Destructuring an array ES 6  method
   [lastX, lastY] = [e.offsetX, e.offsetY];
+  hue++;
 }
 
 // Will only draw when the mouse is being clicked by the user (mousedown)
 // Will start path from where the user clicksthe mouse
-canvas.addEventListener('mousedown', (e) => {
+canvas.addEventListener('mousedown', e => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
 });
